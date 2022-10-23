@@ -7,10 +7,10 @@ const mongoose = require('mongoose')
 const db = mongoose.connection
 
 //環境變數設定
-if (process.env.MOGODB_URI !== "production") {
+if (process.env.MONGODB_URI_S !== "production") {
   require('dotenv').config()
 }
-mongoose.connect(process.env.MOGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI_S, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // 伺服器連線狀況
 db.on('error', () => {
