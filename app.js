@@ -6,6 +6,8 @@ const port = 3000
 const mongoose = require('mongoose')
 const db = mongoose.connection
 
+const exphbs = require('express-handlebars')
+
 //環境變數設定
 if (process.env.MONGODB_URI_S !== "production") {
   require('dotenv').config()
@@ -21,9 +23,13 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+//設定樣板引擎
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
 //路由啟動
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.render('index')
 })
 
 //路由監聽
