@@ -1,14 +1,21 @@
 <div class="container">
-  <a href="/">
-    <h3>URLShortener</h3>
-  </a>
-  <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
-    style="width:200px" alt="">
-  <form action="/" method="POST">
-    <input type="text" value="{{link}}" name="link" placeholder="Input URL here">
-    {{#if remind}}{{remind}}{{/if}}
-    <div>
-      <button type="submit">Shorten</button>
+  <div class="row">
+    <div class="col">
+      <p class="text-center fs-2 m-3">URLShortener</P>
+      <div class="text-center m-3">
+        <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
+          style="width:200px" alt="">
+      </div>
+      <form class="" action="/" method="POST">
+        <div class="text-center m-3">
+          <input class="input-group-text col-5 mx-auto" type="text" value="{{link}}" name="link"
+            placeholder="Input URL here">
+          {{#if remind}}{{remind}}{{/if}}
+        </div>
+        <div class="text-center m-2">
+          <button class="btn btn-outline-primary col-3" type="submit">Shorten</button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
