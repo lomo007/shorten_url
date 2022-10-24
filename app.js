@@ -46,7 +46,7 @@ app.post('/', (req, res) => {
 
   // 有輸入
   const newLink = req.body.link
-  console.log('newLink', newLink)
+  // Domain name
   const localhost = 'http://localhost:3000/'
   const herokuhost = 'http://shorten_url.herokuapp.com/'
   const mainUrl = process.env.NODE_ENV ? herokuhost : localhost
@@ -59,9 +59,7 @@ app.post('/', (req, res) => {
       //產生五碼亂數
       let shorten = fiveRandomwords()
       //查找亂數, 若不為空 -> 存在
-      console.log('shorten', shorten)
       Shorten.findOne({ shortenLink: shorten }, function (err, findShorten) {
-        console.log('findShorten', findShorten)
         while (findShorten !== null) {
           shorten = fiveRandomwords()
         }

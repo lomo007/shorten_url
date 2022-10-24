@@ -6,15 +6,28 @@
         <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
           style="width:200px" alt="">
       </div>
-      <form action="/" method="">
-        <div class="col-5 mx-auto">
-          <p class="text-start fs-4 fw-bold ms-3">Success! Please use this link:</P>
-          <p class="text-start fs-5 fw-bold ms-3" style="color:blue; margin-top:-15px">{{shorten}}</p>
-        </div>
-        <div class="text-center m-2">
-          <button class="btn btn-primary col-1" type=" submit">Copy</button>
-        </div>
-      </form>
+      <div class="col-5 mx-auto">
+        <p class="text-start fs-4 fw-bold ms-3">Success! Please use this link:</P>
+        <p id="copy-ShortLink" class="text-start fs-5 fw-bold ms-3" style="color:blue; margin-top:-15px">{{shorten}}</p>
+      </div>
+      <div class="text-center m-2">
+        <button id="shortLink-btn" class="btn btn-primary col-1">Copy</button>
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  let Link = document.getElementById('copy-ShortLink').innerHTML
+  let copyBtn = document.getElementById('shortLink-btn')
+
+
+  copyBtn.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(Link)
+      console.log('Content copied to clipboard')
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
+  }
+</script>
