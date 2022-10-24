@@ -38,12 +38,14 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
+  const linkHead = 'https://'
 
   // 沒有輸入不送出 提醒重新輸入
   if (!req.body.link) {
     return res.render('index', { remind: `Ooops! We did't get the link. Please re-enter it again!` })
+  } else if (!req.body.link.includes(linkHead)) {
+    return res.render('index', { remind: `Ooops! Please add "https://" ahead!` })
   }
-
   // 有輸入
   const newLink = req.body.link
   // Domain name
@@ -65,16 +67,16 @@ app.post('/', (req, res) => {
         }
       })
       //存入資料庫
+      const newShorten = mainUrl + shorten
       Shorten.create({ link: newLink, shortenLink: shorten })
-      shorten = mainUrl + shorten
         //渲染到首頁
-        .then(() => res.render('success', { shorten: shorten }))
+        .then(() => res.render('success', { newShorten: newShorten }))
 
     } else {
       //資料庫存在輸入URL      
       //渲染到首頁
-      shorten = mainUrl + findLink.shortenLink
-      return res.render('success', { shorten: shorten })
+      newShorten = mainUrl + findLink.shortenLink
+      return res.render('success', { newShorten: newShorten })
     }
   });
 })
