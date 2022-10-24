@@ -4,6 +4,9 @@ const Schema = mongoose.Schema
 const shortenSchema = new Schema({
   link: {
     type: String
+  },
+  shortenLink: {
+    type: String
   }
 })
 

@@ -4,11 +4,14 @@
   </a>
   <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
     style="width:200px" alt="">
-  <form action="/" method="POST">
-    <input type="text" value="{{link}}" name="link" placeholder="Input URL here">
-    {{#if remind}}{{remind}}{{/if}}
+  <form action="/" method="">
+
+    <h3>Success! Please use this link:</h3>
     <div>
-      <button type="submit">Shorten</button>
+      <p>https://shorten_url.herokuapp.com/{{newShorten}}</p>
+    </div>
+    <div>
+      <button type=" submit">Copy</button>
     </div>
   </form>
 </div>
