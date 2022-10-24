@@ -1,5 +1,5 @@
 
-function fiveRandomGenerator() {
+function fiveRandomwords() {
   //預設為空
   let shorten = ''
 
@@ -21,4 +21,4 @@ function fiveRandomGenerator() {
   return shorten
 }
 
-module.exports = fiveRandomGenerator
+module.exports = fiveRandomwords

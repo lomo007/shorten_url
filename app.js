@@ -46,31 +46,37 @@ app.post('/', (req, res) => {
 
   // 有輸入
   const newLink = req.body.link
-  console.log(newLink)
+  console.log('newLink', newLink)
+  const localhost = 'http://localhost:3000/'
+  const herokuhost = 'http://shorten_url.herokuapp.com/'
+  const mainUrl = process.env.NODE_ENV ? herokuhost : localhost
 
   // 查看資料庫有沒有連結
-  Shorten.findOne({ link: newLink }, function (err, doc) {
+  Shorten.findOne({ link: newLink }, function (err, findLink) {
     //資料庫不存在輸入URL
-    if (err) {
+
+    if (findLink === null) {
       //產生五碼亂數
-      let shorten = fiveRandomGenerator()
+      let shorten = fiveRandomwords()
       //查找亂數, 若不為空 -> 存在
-
-      let fiveRandom = Shorten.findOne({ shortenLink: shorten })
-      while (fiveRandom) {
-        shorten = fiveRandomGenerator()
-      }
-
+      console.log('shorten', shorten)
+      Shorten.findOne({ shortenLink: shorten }, function (err, findShorten) {
+        console.log('findShorten', findShorten)
+        while (findShorten !== null) {
+          shorten = fiveRandomwords()
+        }
+      })
       //存入資料庫
       Shorten.create({ link: newLink, shortenLink: shorten })
+      shorten = mainUrl + shorten
         //渲染到首頁
-        .then(() => res.render('success', { shortenLink: shorten }))
+        .then(() => res.render('success', { shorten: shorten }))
 
     } else {
       //資料庫存在輸入URL      
       //渲染到首頁
-      shorten = doc.shortenLink
-      return res.render('success', { shortenLink: shorten })
+      shorten = mainUrl + findLink.shortenLink
+      return res.render('success', { shorten: shorten })
     }
   });
 })
