@@ -1,31 +1,34 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <p class="text-center fs-2 m-3">URLShortener</P>
+      <a href="/" style="text-decoration: none; color:rgb(42, 41, 41);">
+        <p class="text-center fs-2 m-3">URL Shortener</P>
+      </a>
       <div class="text-center m-3">
         <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
           style="width:200px" alt="">
       </div>
       <div class="col-5 mx-auto">
         <p class="text-start fs-4 fw-bold ms-3">Success! Please use this link:</P>
-        <p id="copy-ShortLink" class="text-start fs-5 fw-bold ms-3" style="color:blue; margin-top:-15px">{{newShorten}}
+        <p id="shortLink-text" class="text-start fs-5 fw-bold ms-3" style="color:blue; margin-top:-15px">{{shortenLink}}
         </p>
       </div>
       <div class="text-center m-2">
-        <button id="shortLink-btn" class="btn btn-primary col-1">Copy</button>
+        <button id="shortLink-copyBtn" class="btn btn-primary col-1">Copy</button>
+        <a href="/" class="btn btn-outline-primary col-1">Back</a>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  let Link = document.getElementById('copy-ShortLink').innerHTML
-  let copyBtn = document.getElementById('shortLink-btn')
-
-
-  copyBtn.onclick = async () => {
+  let shortLinkText = document.getElementById('shortLink-text').innerHTML
+  console.log(shortLinkText)
+  let shortLinkCopyBtn = document.getElementById('shortLink-copyBtn')
+  shortLinkCopyBtn.onclick = async () => {
     try {
-      await navigator.clipboard.writeText(Link)
+      await navigator.clipboard.writeText(shortLinkText)
+      alert(`You successfully copied \nthe shortLinkText:\n\n${shortLinkText}`)
       console.log('Content copied to clipboard')
     } catch (err) {
       console.error('Failed to copy:', err)

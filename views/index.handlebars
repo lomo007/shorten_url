@@ -1,16 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <p class="text-center fs-2 m-3">URLShortener</P>
+      <a href="/" style="text-decoration: none; color:black;">
+        <p class="text-center fs-2 m-3">URL Shortener</P>
+      </a>
       <div class="text-center m-3">
         <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
           style="width:200px" alt="">
       </div>
       <form class="" action="/" method="POST">
         <div class="text-center m-3">
-          <input class="input-group-text col-5 mx-auto" type="text" value="{{link}}" name="link"
+          <input class="input-group-text col-5 mx-auto" type="text" value="{{inputLink}}" name="inputLink"
             placeholder="Input URL here">
-          {{#if remind}}{{remind}}{{/if}}
+          {{#if remindInputText}}{{remindInputText}}{{/if}}
         </div>
         <div class="text-center m-2">
           <button class="btn btn-outline-primary col-3" type="submit">Shorten</button>

@@ -20,6 +20,11 @@
    ```bash
    cd shorten_url
    ```
+3-2. 新增.env檔案輸入環境參數，或是於本地新增:
+
+   ```bash
+   MONGODB_URI_S='Your MongoDB Account String'
+   ```
 
 4. 接著輸入'npm run start'執行渲染畫面:
 
